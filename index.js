@@ -27,12 +27,23 @@ function gameDifficulty(difficultyLevel) {
             var row = document.createElement("div");
             row.className = "row";
 
+            // Generate a random ID (0, 1, 2, or 3)
+            var randomNum = Math.floor(Math.random() * 4);
             for (let j = 0; j < 4; j++) {
                 var col = document.createElement("div");
                 col.className = "col";
+
+                var treasure = (j === randomNum) ? "0" : "1";
+
                 var img = document.createElement("img");
-                img.src = "/images/egg.png";
-                img.alt = "";
+                if (treasure != 0) {
+                    img.src = "/images/egg.png";
+                    img.alt = "";
+                }
+                else {
+                    img.src = "/images/skull.png";
+                    img.alt = "";
+                }
                 img.style.height = "100%";
                 col.appendChild(img);
                 row.appendChild(col);
@@ -45,12 +56,24 @@ function gameDifficulty(difficultyLevel) {
             var row = document.createElement("div");
             row.className = "row";
 
+            // Generate a random ID (0, 1, or 2)
+            var randomNum = Math.floor(Math.random() * 3);
+
             for (let j = 0; j < 3; j++) {
                 var col = document.createElement("div");
                 col.className = "col";
+                // Set the ID for the current column
+                var treasure = (j === randomNum) ? "0" : "1";
+
                 var img = document.createElement("img");
-                img.src = "/images/egg.png";
-                img.alt = "";
+                if (treasure != 0) {
+                    img.src = "/images/egg.png";
+                    img.alt = "";
+                }
+                else {
+                    img.src = "/images/skull.png";
+                    img.alt = "";
+                }
                 img.style.height = "100%";
                 col.appendChild(img);
                 row.appendChild(col);
@@ -63,12 +86,25 @@ function gameDifficulty(difficultyLevel) {
             var row = document.createElement("div");
             row.className = "row";
 
+            // Generate a random ID (0 or 1)
+            var randomNum = Math.floor(Math.random() * 2);
+
             for (let j = 0; j < 2; j++) {
                 var col = document.createElement("div");
                 col.className = "col";
+
+                // Set the ID for the current column
+                var treasure = (j === randomNum) ? "0" : "1";
+
                 var img = document.createElement("img");
-                img.src = "/images/egg.png";
-                img.alt = "";
+                if (treasure != 0) {
+                    img.src = "/images/egg.png";
+                    img.alt = "";
+                }
+                else {
+                    img.src = "/images/skull.png";
+                    img.alt = "";
+                }
                 img.style.height = "100%";
                 col.appendChild(img);
                 row.appendChild(col);
