@@ -115,6 +115,12 @@ select {
     align-items: center;
     margin: 0.2rem;
     margin-bottom: 0.6rem;
+    color: white;
+}
+
+#message {
+    font-size: 24px;
+    margin-top: 30rem;
 }
 
 .col {

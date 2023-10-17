@@ -24,7 +24,8 @@
         <label>Bet Amount</label>
         <input type="text" name="betAmount" value="0" />
         <label>Difficulty</label>
-        <select>
+        <select id="difficulty">
+          <option value="-">-</option>
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
           <option value="hard">Hard</option>
@@ -36,52 +37,10 @@
         <input type="submit" value="Cashout" id="btn">
       </form>
     </div>
-    <div class="right" onclick="message()">
-      <div class="game">
+    <div class="right">
+      <div class="game" id="game-board">
         <div class="row">
-          <div class="col"><img src="/images/egg.png" alt="" height="100%"></div>
-          <div class="col"><img src="/images/skull.png" alt="" height="100%"></div>
-          <div class="col"><img src="/images/egg.png" alt="" height="100%"></div>
-        </div>
-        <div class="row">
-          <div class="col">s</div>
-          <div class="col">asdf</div>
-          <div class="col">asdf</div>
-        </div>
-        <div class="row">
-          <div class="col">s</div>
-          <div class="col">asdf</div>
-          <div class="col">asdf</div>
-        </div>
-        <div class="row">
-          <div class="col">s</div>
-          <div class="col">asdf</div>
-          <div class="col">asdf</div>
-        </div>
-        <div class="row">
-          <div class="col">s</div>
-          <div class="col">asdf</div>
-          <div class="col">asdf</div>
-        </div>
-        <div class="row">
-          <div class="col">s</div>
-          <div class="col">asdf</div>
-          <div class="col">asdf</div>
-        </div>
-        <div class="row">
-          <div class="col">s</div>
-          <div class="col">asdf</div>
-          <div class="col">asdf</div>
-        </div>
-        <div class="row">
-          <div class="col">s</div>
-          <div class="col">asdf</div>
-          <div class="col">asdf</div>
-        </div>
-        <div class="row">
-          <div class="col">s</div>
-          <div class="col">asdf</div>
-          <div class="col">asdf</div>
+          <div id="message"> Choose A Difficulty Level ! </div>
         </div>
       </div>
     </div>
