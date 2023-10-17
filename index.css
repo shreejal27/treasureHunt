@@ -95,15 +95,11 @@ select {
     float: left;
     height: 100%;
     width: 70%;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    /* Center vertically */
+    background-color: #182433;
 }
 
 .game {
     margin: 1rem;
-    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -111,18 +107,33 @@ select {
 }
 
 .row {
-    border: 1px solid black;
     height: 3rem;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    margin: 0.2rem;
+    margin-bottom: 0.6rem;
 }
 
 .col {
     height: 100%;
-    width: 33%;
-    border: 1px solid black;
+    width: 30%;
+    border: 1px solid white;
+    border-radius: 5px;
     text-align: center;
+    background-color: #00E701;
+    /* to center the text vertically  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* another method */
+    /* line-height: 3rem; */
+
+}
+
+.col:hover {
+    cursor: pointer;
+    background-color: #00B401;
 }
