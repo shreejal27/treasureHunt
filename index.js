@@ -26,7 +26,7 @@ function gameDifficulty(difficultyLevel) {
         for (let i = 0; i < 9; i++) {
             var row = document.createElement("div");
             row.className = "row";
-
+            row.id = "row" + (i + 1);
             // Generate a random ID (0, 1, 2, or 3)
             var randomNum = Math.floor(Math.random() * 4);
             for (let j = 0; j < 4; j++) {
@@ -50,12 +50,13 @@ function gameDifficulty(difficultyLevel) {
             }
             gameBoard.appendChild(row);
         }
+        checkActiveRow();
     }
     if (difficultyLevel == "medium") {
         for (let i = 0; i < 9; i++) {
             var row = document.createElement("div");
             row.className = "row";
-
+            row.id = "row" + (i + 1);
             // Generate a random ID (0, 1, or 2)
             var randomNum = Math.floor(Math.random() * 3);
 
@@ -80,12 +81,13 @@ function gameDifficulty(difficultyLevel) {
             }
             gameBoard.appendChild(row);
         }
+        checkActiveRow();
     }
     if (difficultyLevel == "hard") {
         for (let i = 0; i < 9; i++) {
             var row = document.createElement("div");
             row.className = "row";
-
+            row.id = "row" + (i + 1);
             // Generate a random ID (0 or 1)
             var randomNum = Math.floor(Math.random() * 2);
 
@@ -112,9 +114,23 @@ function gameDifficulty(difficultyLevel) {
             gameBoard.appendChild(row);
         }
     }
+    checkActiveRow();
 }
 function clearGameBoard() {
     while (gameBoard.firstChild) {
         gameBoard.removeChild(gameBoard.firstChild);
+    }
+}
+
+function checkActiveRow() {
+    var startRow = "row9";
+    var activeRow = document.getElementById(startRow);
+
+    if (activeRow) {
+        var colDivs = activeRow.getElementsByClassName("col");
+
+        for (var i = 0; i < colDivs.length; i++) {
+            colDivs[i].classList.add("active");
+        }
     }
 }

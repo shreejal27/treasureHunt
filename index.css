@@ -129,7 +129,8 @@ select {
     border: 1px solid white;
     border-radius: 5px;
     text-align: center;
-    background-color: #00E701;
+    /* background-color: #00E701; */
+    background-color: #213743;
     /* to center the text vertically  */
     display: flex;
     justify-content: center;
@@ -142,4 +143,8 @@ select {
 .col:hover {
     cursor: pointer;
     background-color: #00B401;
+}
+
+.active {
+    background-color: #00E701;
 }
