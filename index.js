@@ -148,6 +148,7 @@ function handleColumnClick() {
     var colNumber = clickedColId.substr(3, 1);
     var colImage = this.querySelector("img");
     var imageName = getFileNameFromImagePath(colImage.src);
+
     if (imageName !== "skull.png") {
         console.log(colNumber, imageName);
         var currentRow = this.parentElement; // Get the parent element, which is the row
@@ -166,7 +167,7 @@ function handleColumnClick() {
         checkActiveRow("row" + rowNumber);
     }
     else {
-        console.log("GameOver");
+        gameOver();
     }
 }
 
@@ -175,4 +176,15 @@ function getFileNameFromImagePath(imagePath) {
     var pathParts = imagePath.split("/");
     var fileName = pathParts[pathParts.length - 1];
     return fileName;
+}
+
+function gameOver() {
+    const activeColumns = document.querySelectorAll('.col.active');
+
+    // Remove the "active" class from each element
+    activeColumns.forEach(col => {
+        col.classList.remove('active');
+    });
+    checkActiveRow("row9");
+    alert("Game Over !");
 }
