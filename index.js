@@ -50,7 +50,7 @@ function gameDifficulty(difficultyLevel) {
             }
             gameBoard.appendChild(row);
         }
-        checkActiveRow();
+        checkActiveRow("row9");
     }
     if (difficultyLevel == "medium") {
         for (let i = 0; i < 9; i++) {
@@ -82,7 +82,7 @@ function gameDifficulty(difficultyLevel) {
             }
             gameBoard.appendChild(row);
         }
-        checkActiveRow();
+        checkActiveRow("row9");
     }
     if (difficultyLevel == "hard") {
         for (let i = 0; i < 9; i++) {
@@ -115,7 +115,7 @@ function gameDifficulty(difficultyLevel) {
             gameBoard.appendChild(row);
         }
     }
-    checkActiveRow();
+    checkActiveRow("row9");
 }
 function clearGameBoard() {
     while (gameBoard.firstChild) {
@@ -123,9 +123,8 @@ function clearGameBoard() {
     }
 }
 
-function checkActiveRow() {
-    var startRow = "row9";
-    var activeRow = document.getElementById(startRow);
+function checkActiveRow(nextRow) {
+    var activeRow = document.getElementById(nextRow);
 
     if (activeRow) {
         var colDivs = activeRow.getElementsByClassName("col");
@@ -150,15 +149,25 @@ function handleColumnClick() {
     var colImage = this.querySelector("img");
     var imageName = getFileNameFromImagePath(colImage.src);
     if (imageName !== "skull.png") {
-        checkTreasure(colNumber, imageName);
+        console.log(colNumber, imageName);
+        var currentRow = this.parentElement; // Get the parent element, which is the row
+        var currentRowId = currentRow.id;
+
+        //to remove the activeRow from current row to move to next row
+        var activeRow = document.getElementById(currentRowId);
+        if (activeRow) {
+            var colDivs = activeRow.getElementsByClassName("col");
+            for (var i = 0; i < colDivs.length; i++) {
+                colDivs[i].classList.remove("active");
+            }
+        }
+        var rowNumber = currentRowId.substr(3, 1);
+        rowNumber--;
+        checkActiveRow("row" + rowNumber);
     }
     else {
         console.log("GameOver");
     }
-}
-
-function checkTreasure(colNumber, imageName) {
-    console.log(colNumber, imageName);
 }
 
 function getFileNameFromImagePath(imagePath) {
