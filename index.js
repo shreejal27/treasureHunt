@@ -32,7 +32,7 @@ function gameDifficulty(difficultyLevel) {
             for (let j = 0; j < 4; j++) {
                 var col = document.createElement("div");
                 col.className = "col";
-
+                col.id = "col" + (j + 1);
                 var treasure = (j === randomNum) ? "0" : "1";
 
                 var img = document.createElement("img");
@@ -63,6 +63,7 @@ function gameDifficulty(difficultyLevel) {
             for (let j = 0; j < 3; j++) {
                 var col = document.createElement("div");
                 col.className = "col";
+                col.id = "col" + (j + 1);
                 // Set the ID for the current column
                 var treasure = (j === randomNum) ? "0" : "1";
 
@@ -94,7 +95,7 @@ function gameDifficulty(difficultyLevel) {
             for (let j = 0; j < 2; j++) {
                 var col = document.createElement("div");
                 col.className = "col";
-
+                col.id = "col" + (j + 1);
                 // Set the ID for the current column
                 var treasure = (j === randomNum) ? "0" : "1";
 
@@ -131,6 +132,38 @@ function checkActiveRow() {
 
         for (var i = 0; i < colDivs.length; i++) {
             colDivs[i].classList.add("active");
+
+            // Add a click event listener to the columns with the class "active"
+            if (colDivs[i].classList.contains("active")) {
+                // Remove any existing click event listener
+                colDivs[i].removeEventListener("click", handleColumnClick);
+
+                // Add a new click event listener
+                colDivs[i].addEventListener("click", handleColumnClick);
+            }
         }
     }
+}
+function handleColumnClick() {
+    var clickedColId = this.id;
+    var colNumber = clickedColId.substr(3, 1);
+    var colImage = this.querySelector("img");
+    var imageName = getFileNameFromImagePath(colImage.src);
+    if (imageName !== "skull.png") {
+        checkTreasure(colNumber, imageName);
+    }
+    else {
+        console.log("GameOver");
+    }
+}
+
+function checkTreasure(colNumber, imageName) {
+    console.log(colNumber, imageName);
+}
+
+function getFileNameFromImagePath(imagePath) {
+    // Split the path by "/" to get the filename
+    var pathParts = imagePath.split("/");
+    var fileName = pathParts[pathParts.length - 1];
+    return fileName;
 }
