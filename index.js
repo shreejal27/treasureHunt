@@ -1,6 +1,8 @@
-function message() {
-    // alert("Hello");
-}
+var wallet = document.getElementById("totalAmount").innerText;
+var amount = parseInt(wallet.substring(1, wallet.length));
+var betAmount = parseInt(document.getElementById("betAmount").value);
+var profit = parseInt(document.getElementById("profit").value);
+
 var gameBoard = document.getElementById("game-board");
 var selectElement = document.getElementById("difficulty");
 
@@ -189,4 +191,10 @@ function gameOver() {
     var selectedValue = selectedOption.value;
     gameDifficulty(selectedValue);
     alert("Game Over !");
+}
+
+function cashout() {
+    amount = amount + profit;
+    alert("CashOut" + betAmount + profit + wallet + " " + amount);
+    document.getElementById("totalAmount").innerText = '$' + amount;
 }
