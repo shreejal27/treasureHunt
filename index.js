@@ -185,6 +185,8 @@ function gameOver() {
     activeColumns.forEach(col => {
         col.classList.remove('active');
     });
-    checkActiveRow("row9");
+    var selectedOption = selectElement.options[selectElement.selectedIndex];
+    var selectedValue = selectedOption.value;
+    gameDifficulty(selectedValue);
     alert("Game Over !");
 }
