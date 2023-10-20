@@ -12,7 +12,7 @@
   <div class="navBar">
     <div class="title">Treasure Hunt</div>
     <div class="walletBox">
-      <div style="display: inline-block" id="totalAmount">$1000</div>
+      <div style="display: inline-block" id="totalAmount">$<span id="amount">1000</span></div>
       <div style="display: inline-block" id="wallet">Wallet</div>
     </div>
     <div class="save">Save</div>
@@ -32,7 +32,7 @@
         </select>
         <div class="profit">
           <label>Total Profit (<span id="multiplier">0</span>x)</label>
-          <input type="text" name="profitAmount" value="10" id="profit" disabled />
+          <input type="text" name="profitAmount" value="0" id="profit" disabled />
         </div>
       </form>
       <input type="submit" value="Cashout" id="btn" onclick="cashout()">

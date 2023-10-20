@@ -1,8 +1,3 @@
-var wallet = document.getElementById("totalAmount").innerText;
-var amount = parseInt(wallet.substring(1, wallet.length));
-var betAmount = parseInt(document.getElementById("betAmount").value);
-var profit = parseInt(document.getElementById("profit").value);
-
 var gameBoard = document.getElementById("game-board");
 var selectElement = document.getElementById("difficulty");
 
@@ -206,9 +201,11 @@ function gameOver() {
 
 
 function cashout() {
+    var amount = parseInt(document.getElementById("amount").innerText);
+    var profit = parseInt(document.getElementById("profit").value);
     amount = amount + profit;
-    alert("CashOut" + betAmount + profit + wallet + " " + amount);
-    document.getElementById("totalAmount").innerText = '$' + amount;
+    document.getElementById("amount").innerText = amount;
+
 }
 
 function multiplier(multiplierWithRow, difficulty) {
@@ -223,10 +220,17 @@ function multiplier(multiplierWithRow, difficulty) {
         var profitMultiplier = 1 + (0.5 * multiplierWithRow);
     }
     else if (difficultyLevel == "medium") {
-        var profitMultiplier = 5 + (1 * multiplierWithRow);
+        var profitMultiplier = 2 + (1 * multiplierWithRow);
     }
     else if (difficultyLevel == "hard") {
-        var profitMultiplier = 10 + (2 * multiplierWithRow);
+        var profitMultiplier = 3 + (2 * multiplierWithRow);
     }
     multiplierSign.innerText = profitMultiplier;
+
+    var betAmount = parseInt(document.getElementById("betAmount").value);
+
+    var totalProfit = (betAmount * profitMultiplier) - betAmount;
+    var profitSign = document.getElementById("profit");
+
+    profitSign.value = totalProfit;
 }
