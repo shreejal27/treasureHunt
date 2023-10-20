@@ -10,7 +10,13 @@ var selectElement = document.getElementById("difficulty");
 selectElement.addEventListener("change", function () {
     var selectedOption = selectElement.options[selectElement.selectedIndex];
     var selectedValue = selectedOption.value;
-    gameDifficulty(selectedValue);
+
+    var betAmount = parseInt(document.getElementById("betAmount").value);
+    if (betAmount > amount) {
+        alert("You can't proceed with this difficulty level due to insufficient funds.");
+    } else {
+        gameDifficulty(selectedValue);
+    }
 });
 
 function gameDifficulty(difficultyLevel) {
@@ -165,6 +171,11 @@ function handleColumnClick() {
             }
         }
         var rowNumber = currentRowId.substr(3, 1);
+        var multiplierWithRow = 10 - rowNumber;
+
+        //pass the difficulty level
+        var difficulty = document.getElementById("difficulty");
+        multiplier(multiplierWithRow, difficulty);
         rowNumber--;
         checkActiveRow("row" + rowNumber);
     }
@@ -193,8 +204,29 @@ function gameOver() {
     alert("Game Over !");
 }
 
+
 function cashout() {
     amount = amount + profit;
     alert("CashOut" + betAmount + profit + wallet + " " + amount);
     document.getElementById("totalAmount").innerText = '$' + amount;
+}
+
+function multiplier(multiplierWithRow, difficulty) {
+
+    //get the user's bet difficulty level
+    var difficultyOption = difficulty.options[difficulty.selectedIndex];
+    var difficultyLevel = difficultyOption.value;
+
+    var multiplierSign = document.getElementById("multiplier");
+
+    if (difficultyLevel == "easy") {
+        var profitMultiplier = 1 + (0.5 * multiplierWithRow);
+    }
+    else if (difficultyLevel == "medium") {
+        var profitMultiplier = 5 + (1 * multiplierWithRow);
+    }
+    else if (difficultyLevel == "hard") {
+        var profitMultiplier = 10 + (2 * multiplierWithRow);
+    }
+    multiplierSign.innerText = profitMultiplier;
 }
