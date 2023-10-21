@@ -152,41 +152,44 @@ function checkActiveRow(nextRow) {
     }
 }
 function handleColumnClick() {
-    var clickedColId = this.id;
-    var colNumber = clickedColId.substr(3, 1);
-    var colImage = this.querySelector("img");
-    var imageName = getFileNameFromImagePath(colImage.src);
+    // Check if the clicked column has the "active" class
+    if (this.classList.contains("active")) {
+        var clickedColId = this.id;
+        var colNumber = clickedColId.substr(3, 1);
+        var colImage = this.querySelector("img");
+        var imageName = getFileNameFromImagePath(colImage.src);
 
-    if (imageName !== "skull.png") {
-        console.log(colNumber, imageName);
+        if (imageName !== "skull.png") {
+            console.log(colNumber, imageName);
 
-        // Reveal the image by changing its opacity
-        colImage.style.opacity = 1;
+            // Reveal the image by changing its opacity
+            colImage.style.opacity = 1;
 
-        var currentRow = this.parentElement; // Get the parent element, which is the row
-        var currentRowId = currentRow.id;
+            var currentRow = this.parentElement; // Get the parent element, which is the row
+            var currentRowId = currentRow.id;
 
-        //to remove the activeRow from current row to move to next row
-        var activeRow = document.getElementById(currentRowId);
-        if (activeRow) {
-            var colDivs = activeRow.getElementsByClassName("col");
-            for (var i = 0; i < colDivs.length; i++) {
-                colDivs[i].classList.remove("active");
+            //to remove the activeRow from current row to move to next row
+            var activeRow = document.getElementById(currentRowId);
+            if (activeRow) {
+                var colDivs = activeRow.getElementsByClassName("col");
+                for (var i = 0; i < colDivs.length; i++) {
+                    colDivs[i].classList.remove("active");
+                }
             }
-        }
-        var rowNumber = currentRowId.substr(3, 1);
-        var multiplierWithRow = 10 - rowNumber;
+            var rowNumber = currentRowId.substr(3, 1);
+            var multiplierWithRow = 10 - rowNumber;
 
-        //pass the difficulty level
-        var difficulty = document.getElementById("difficulty");
-        multiplier(multiplierWithRow, difficulty);
-        rowNumber--;
-        checkActiveRow("row" + rowNumber);
-    }
-    else {
-        colImage.style.opacity = 1;
-        // Delay the execution of the gameOver function for 3 seconds (3000 milliseconds)
-        setTimeout(gameOver, 1000);
+            //pass the difficulty level
+            var difficulty = document.getElementById("difficulty");
+            multiplier(multiplierWithRow, difficulty);
+            rowNumber--;
+            checkActiveRow("row" + rowNumber);
+        }
+        else {
+            colImage.style.opacity = 1;
+            // Delay the execution of the gameOver function for 3 seconds (3000 milliseconds)
+            setTimeout(gameOver, 500);
+        }
     }
 }
 

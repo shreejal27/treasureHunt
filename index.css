@@ -135,10 +135,11 @@ select {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 5px;
     /* another method */
     /* line-height: 3rem; */
-
 }
+
 
 .col:hover {
     cursor: pointer;
