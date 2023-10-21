@@ -12,6 +12,8 @@ selectElement.addEventListener("change", function () {
     if (betAmount > amount || betAmount < 1) {
         alert("Please change your Bet Amount");
         // go to index page
+        // Select the '-' option
+        document.getElementById("difficulty").value = "-";
         gameDifficulty("-");
     } else {
         gameDifficulty(selectedValue);
@@ -143,7 +145,6 @@ function checkActiveRow(nextRow) {
             if (colDivs[i].classList.contains("active")) {
                 // Remove any existing click event listener
                 colDivs[i].removeEventListener("click", handleColumnClick);
-
                 // Add a new click event listener
                 colDivs[i].addEventListener("click", handleColumnClick);
             }
@@ -158,6 +159,10 @@ function handleColumnClick() {
 
     if (imageName !== "skull.png") {
         console.log(colNumber, imageName);
+
+        // Reveal the image by changing its opacity
+        colImage.style.opacity = 1;
+
         var currentRow = this.parentElement; // Get the parent element, which is the row
         var currentRowId = currentRow.id;
 
@@ -179,7 +184,9 @@ function handleColumnClick() {
         checkActiveRow("row" + rowNumber);
     }
     else {
-        gameOver();
+        colImage.style.opacity = 1;
+        // Delay the execution of the gameOver function for 3 seconds (3000 milliseconds)
+        setTimeout(gameOver, 1000);
     }
 }
 
@@ -201,11 +208,12 @@ function gameOver() {
     var amount = parseInt(document.getElementById("amount").innerText);
     var betAmount = parseInt(document.getElementById("betAmount").value);
 
-    amount= amount - betAmount;
-    document.getElementById("amount").innerText= amount;
+    amount = amount - betAmount;
+    document.getElementById("amount").innerText = amount;
     document.getElementById("profit").value = 0;
     document.getElementById("multiplier").innerText = 0;
 
+    //to reset the game
     var selectedOption = selectElement.options[selectElement.selectedIndex];
     var selectedValue = selectedOption.value;
     gameDifficulty(selectedValue);
@@ -220,8 +228,11 @@ function cashout() {
     document.getElementById("amount").innerText = amount;
     document.getElementById("profit").value = 0;
     document.getElementById("multiplier").innerText = 0;
-    checkActiveRow("row9");
 
+    //to reset the game
+    var selectedOption = selectElement.options[selectElement.selectedIndex];
+    var selectedValue = selectedOption.value;
+    gameDifficulty(selectedValue);
 }
 
 function multiplier(multiplierWithRow, difficulty) {
@@ -250,3 +261,17 @@ function multiplier(multiplierWithRow, difficulty) {
 
     profitSign.value = totalProfit;
 }
+
+
+// function removeActiveClassFromAllColumns() {
+//     // Get all the row elements
+//     var rows = document.querySelectorAll('.row');
+//     // Iterate through each row
+//     for (var i = 0; i < rows.length; i++) {
+//         var colDivs = rows[i].getElementsByClassName('col');
+//         // Iterate through columns within the row and remove the "active" class
+//         for (var j = 0; j < colDivs.length; j++) {
+//             colDivs[j].classList.remove('active');
+//         }
+//     }
+// }
