@@ -6,9 +6,13 @@ selectElement.addEventListener("change", function () {
     var selectedOption = selectElement.options[selectElement.selectedIndex];
     var selectedValue = selectedOption.value;
 
+    var amount = parseInt(document.getElementById("amount").innerText);
     var betAmount = parseInt(document.getElementById("betAmount").value);
-    if (betAmount > amount) {
-        alert("You can't proceed with this difficulty level due to insufficient funds.");
+
+    if (betAmount > amount || betAmount < 1) {
+        alert("Please change your Bet Amount");
+        // go to index page
+        gameDifficulty("-");
     } else {
         gameDifficulty(selectedValue);
     }
@@ -193,6 +197,15 @@ function gameOver() {
     activeColumns.forEach(col => {
         col.classList.remove('active');
     });
+    //deduct the bet amount from wallet and reset profit values
+    var amount = parseInt(document.getElementById("amount").innerText);
+    var betAmount = parseInt(document.getElementById("betAmount").value);
+
+    amount= amount - betAmount;
+    document.getElementById("amount").innerText= amount;
+    document.getElementById("profit").value = 0;
+    document.getElementById("multiplier").innerText = 0;
+
     var selectedOption = selectElement.options[selectElement.selectedIndex];
     var selectedValue = selectedOption.value;
     gameDifficulty(selectedValue);
@@ -205,6 +218,9 @@ function cashout() {
     var profit = parseInt(document.getElementById("profit").value);
     amount = amount + profit;
     document.getElementById("amount").innerText = amount;
+    document.getElementById("profit").value = 0;
+    document.getElementById("multiplier").innerText = 0;
+    checkActiveRow("row9");
 
 }
 
