@@ -18,6 +18,7 @@ selectElement.addEventListener("change", function () {
     } else {
         // Enable the betAmount input when a difficulty level is selected
         document.getElementById("betAmount").disabled = false;
+        document.getElementById("difficulty").disabled = false;
         gameDifficulty(selectedValue);
     }
 });
@@ -177,6 +178,7 @@ function handleColumnClick() {
 
             // Disable the betAmount input after a column is clicked
             document.getElementById("betAmount").disabled = true;
+            document.getElementById("difficulty").disabled = true;
 
             var currentRow = this.parentElement; // Get the parent element, which is the row
             var currentRowId = currentRow.id;
@@ -223,6 +225,7 @@ function gameOver() {
 
     // Enable the betAmount input
     document.getElementById("betAmount").disabled = false;
+    document.getElementById("difficulty").disabled = false;
 
     //deduct the bet amount from wallet and reset profit values
     var amount = parseInt(document.getElementById("amount").innerText);
@@ -261,6 +264,7 @@ function gameOver() {
 function cashout() {
     // Enable the betAmount input
     document.getElementById("betAmount").disabled = false;
+    document.getElementById("difficulty").disabled = false;
 
     var amount = parseInt(document.getElementById("amount").innerText);
     var profit = parseInt(document.getElementById("profit").value);
