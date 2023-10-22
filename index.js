@@ -16,6 +16,8 @@ selectElement.addEventListener("change", function () {
         document.getElementById("difficulty").value = "-";
         gameDifficulty("-");
     } else {
+        // Enable the betAmount input when a difficulty level is selected
+        document.getElementById("betAmount").disabled = false;
         gameDifficulty(selectedValue);
     }
 });
@@ -154,6 +156,14 @@ function checkActiveRow(nextRow) {
 function handleColumnClick() {
     // Check if the clicked column has the "active" class
     if (this.classList.contains("active")) {
+        //check the bet amount after the user clicks on a col
+        var betAmount = parseInt(document.getElementById("betAmount").value);
+        var amount = parseInt(document.getElementById("amount").innerText);
+
+        if (betAmount > amount || betAmount < 1) {
+            alert("Change Bet Amount Or Load Your Wallet");
+            return; // Prevent further execution of the function
+        }
         var clickedColId = this.id;
         var colNumber = clickedColId.substr(3, 1);
         var colImage = this.querySelector("img");
@@ -164,6 +174,9 @@ function handleColumnClick() {
 
             // Reveal the image by changing its opacity
             colImage.style.opacity = 1;
+
+            // Disable the betAmount input after a column is clicked
+            document.getElementById("betAmount").disabled = true;
 
             var currentRow = this.parentElement; // Get the parent element, which is the row
             var currentRowId = currentRow.id;
@@ -207,24 +220,48 @@ function gameOver() {
     activeColumns.forEach(col => {
         col.classList.remove('active');
     });
+
+    // Enable the betAmount input
+    document.getElementById("betAmount").disabled = false;
+
     //deduct the bet amount from wallet and reset profit values
     var amount = parseInt(document.getElementById("amount").innerText);
     var betAmount = parseInt(document.getElementById("betAmount").value);
-
     amount = amount - betAmount;
+
     document.getElementById("amount").innerText = amount;
     document.getElementById("profit").value = 0;
     document.getElementById("multiplier").innerText = 0;
 
-    //to reset the game
     var selectedOption = selectElement.options[selectElement.selectedIndex];
     var selectedValue = selectedOption.value;
     gameDifficulty(selectedValue);
     alert("Game Over !");
+
+    //check bet amount after game over
+    // var amount = parseInt(document.getElementById("amount").innerText);
+    // var betAmount = parseInt(document.getElementById("betAmount").value);
+
+    // if (betAmount > amount || betAmount < 1) {
+    //     alert("Game Over !");
+    //     alert("Load Your Wallet Or Change Bet Amount");
+    //     document.getElementById("difficulty").value = "-";
+    //     gameDifficulty("-");
+    // } else {
+    //to reset the game
+    //     var selectedOption = selectElement.options[selectElement.selectedIndex];
+    //     var selectedValue = selectedOption.value;
+    //     gameDifficulty(selectedValue);
+    //     alert("Game Over !");
+    // }
+
 }
 
 
 function cashout() {
+    // Enable the betAmount input
+    document.getElementById("betAmount").disabled = false;
+
     var amount = parseInt(document.getElementById("amount").innerText);
     var profit = parseInt(document.getElementById("profit").value);
     amount = amount + profit;
