@@ -153,6 +153,10 @@ function checkActiveRow(nextRow) {
             }
         }
     }
+    if (nextRow === "row0") {
+        alert("You have won the game !!!");
+        cashout();
+    }
 }
 function handleColumnClick() {
     // Check if the clicked column has the "active" class
@@ -166,12 +170,12 @@ function handleColumnClick() {
             return; // Prevent further execution of the function
         }
         var clickedColId = this.id;
-        var colNumber = clickedColId.substr(3, 1);
+        // var colNumber = clickedColId.substr(3, 1);
         var colImage = this.querySelector("img");
         var imageName = getFileNameFromImagePath(colImage.src);
 
         if (imageName !== "skull.png") {
-            console.log(colNumber, imageName);
+            // console.log(colNumber, imageName);
 
             // Reveal the image by changing its opacity
             colImage.style.opacity = 1;
