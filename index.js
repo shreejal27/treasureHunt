@@ -49,11 +49,11 @@ function gameDifficulty(difficultyLevel) {
 
                 var img = document.createElement("img");
                 if (treasure != 0) {
-                    img.src = "/images/egg.png";
+                    img.src = "images/egg.png";
                     img.alt = "";
                 }
                 else {
-                    img.src = "/images/skull.png";
+                    img.src = "images/skull.png";
                     img.alt = "";
                 }
                 img.style.height = "100%";
@@ -81,11 +81,11 @@ function gameDifficulty(difficultyLevel) {
 
                 var img = document.createElement("img");
                 if (treasure != 0) {
-                    img.src = "/images/egg.png";
+                    img.src = "images/egg.png";
                     img.alt = "";
                 }
                 else {
-                    img.src = "/images/skull.png";
+                    img.src = "images/skull.png";
                     img.alt = "";
                 }
                 img.style.height = "100%";
@@ -113,11 +113,11 @@ function gameDifficulty(difficultyLevel) {
 
                 var img = document.createElement("img");
                 if (treasure != 0) {
-                    img.src = "/images/egg.png";
+                    img.src = "images/egg.png";
                     img.alt = "";
                 }
                 else {
-                    img.src = "/images/skull.png";
+                    img.src = "images/skull.png";
                     img.alt = "";
                 }
                 img.style.height = "100%";
