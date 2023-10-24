@@ -19,6 +19,8 @@ selectElement.addEventListener("change", function () {
         // Enable the betAmount input when a difficulty level is selected
         document.getElementById("betAmount").disabled = false;
         document.getElementById("difficulty").disabled = false;
+        document.getElementById("half").onclick = halfBet;
+        document.getElementById("double").onclick = doubleBet;
         gameDifficulty(selectedValue);
     }
 });
@@ -183,6 +185,10 @@ function handleColumnClick() {
             // Disable the betAmount input after a column is clicked
             document.getElementById("betAmount").disabled = true;
             document.getElementById("difficulty").disabled = true;
+            document.getElementById("half").onclick = null;
+            document.getElementById("double").onclick = null;
+            document.getElementById("half").style.cursor = "default";
+            document.getElementById("double").style.cursor = "default";
 
             var currentRow = this.parentElement; // Get the parent element, which is the row
             var currentRowId = currentRow.id;
@@ -230,6 +236,10 @@ function gameOver() {
     // Enable the betAmount input
     document.getElementById("betAmount").disabled = false;
     document.getElementById("difficulty").disabled = false;
+    document.getElementById("half").onclick = halfBet;
+    document.getElementById("double").onclick = doubleBet;
+    document.getElementById("half").style.cursor = "pointer";
+    document.getElementById("double").style.cursor = "pointer";
 
     //deduct the bet amount from wallet and reset profit values
     var amount = parseInt(document.getElementById("amount").innerText);
@@ -273,6 +283,10 @@ function cashout() {
     if (profit > 0) {
         document.getElementById("betAmount").disabled = false;
         document.getElementById("difficulty").disabled = false;
+        document.getElementById("half").onclick = halfBet;
+        document.getElementById("double").onclick = doubleBet;
+        document.getElementById("half").style.cursor = "pointer";
+        document.getElementById("double").style.cursor = "pointer";
         amount = amount + profit;
         document.getElementById("amount").innerText = amount;
         document.getElementById("profit").value = 0;
@@ -312,6 +326,16 @@ function multiplier(multiplierWithRow, difficulty) {
     var profitSign = document.getElementById("profit");
 
     profitSign.value = totalProfit;
+}
+
+function halfBet() {
+    var betAmount = parseInt(document.getElementById("betAmount").value);
+    document.getElementById("betAmount").value = parseInt(betAmount / 2);
+}
+
+function doubleBet() {
+    var betAmount = parseInt(document.getElementById("betAmount").value);
+    document.getElementById("betAmount").value = betAmount * 2;
 }
 
 

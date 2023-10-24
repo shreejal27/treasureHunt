@@ -22,7 +22,10 @@
       <form>
         <br>
         <label>Bet Amount</label>
-        <input type="text" name="betAmount" id="betAmount" value="0" />
+        <div style="width: 100%;">
+          <input type="text" name="betAmount" id="betAmount" value="0" style="width: 65%;" />
+          <span id="half" onclick="halfBet()">1/2</span><span id="double" onclick="doubleBet()">2x</span>
+        </div>
         <label>Difficulty</label>
         <select id="difficulty">
           <option value="-" selected>-</option>

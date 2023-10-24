@@ -80,6 +80,25 @@ select {
     font-family: 'Righteous', sans-serif;
 }
 
+#half,
+#double {
+    padding: 0.5rem;
+    background-color: #283E4B;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    height: 2rem;
+    cursor: pointer;
+}
+
+#half {
+    border-right: 1px solid #213743;
+}
+
+#double {
+    border-left: 1px solid #213743;
+}
+
 #btn {
     height: 3.5rem;
     color: #2F2F2F;
