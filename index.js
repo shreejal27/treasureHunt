@@ -267,20 +267,24 @@ function gameOver() {
 
 function cashout() {
     // Enable the betAmount input
-    document.getElementById("betAmount").disabled = false;
-    document.getElementById("difficulty").disabled = false;
-
     var amount = parseInt(document.getElementById("amount").innerText);
     var profit = parseInt(document.getElementById("profit").value);
-    amount = amount + profit;
-    document.getElementById("amount").innerText = amount;
-    document.getElementById("profit").value = 0;
-    document.getElementById("multiplier").innerText = 0;
 
-    //to reset the game
-    var selectedOption = selectElement.options[selectElement.selectedIndex];
-    var selectedValue = selectedOption.value;
-    gameDifficulty(selectedValue);
+    if (profit > 0) {
+        document.getElementById("betAmount").disabled = false;
+        document.getElementById("difficulty").disabled = false;
+        amount = amount + profit;
+        document.getElementById("amount").innerText = amount;
+        document.getElementById("profit").value = 0;
+        document.getElementById("multiplier").innerText = 0;
+        //to reset the game
+        var selectedOption = selectElement.options[selectElement.selectedIndex];
+        var selectedValue = selectedOption.value;
+        gameDifficulty(selectedValue);
+    }
+    else {
+        alert("You can't cashout at 0 profit !");
+    }
 }
 
 function multiplier(multiplierWithRow, difficulty) {
