@@ -174,3 +174,7 @@ select {
     transition: opacity 0.6s;
     /* Add a transition for a smooth reveal effect */
 }
+
+.save {
+    cursor: pointer;
+}

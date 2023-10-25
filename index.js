@@ -1,6 +1,15 @@
 var gameBoard = document.getElementById("game-board");
 var selectElement = document.getElementById("difficulty");
 
+// Check if the wallet amount is saved in local storage
+if (localStorage.getItem("walletAmount")) {
+    var walletAmount = parseInt(localStorage.getItem("walletAmount"));
+    if (walletAmount < 100) {
+        walletAmount += 100;
+    }
+    document.getElementById("amount").innerText = walletAmount;
+}
+
 //get difficulty level
 selectElement.addEventListener("change", function () {
     var selectedOption = selectElement.options[selectElement.selectedIndex];
@@ -338,16 +347,13 @@ function doubleBet() {
     document.getElementById("betAmount").value = betAmount * 2;
 }
 
+function save() {
+    var walletAmount = document.getElementById("amount").innerText;
+    localStorage.setItem("walletAmount", walletAmount);
+    alert("Wallet Amount Is Saved");
+    if (walletAmount < 100) {
+        alert("We have gifted you $100");
+    }
+    location.reload();
+};
 
-// function removeActiveClassFromAllColumns() {
-//     // Get all the row elements
-//     var rows = document.querySelectorAll('.row');
-//     // Iterate through each row
-//     for (var i = 0; i < rows.length; i++) {
-//         var colDivs = rows[i].getElementsByClassName('col');
-//         // Iterate through columns within the row and remove the "active" class
-//         for (var j = 0; j < colDivs.length; j++) {
-//             colDivs[j].classList.remove('active');
-//         }
-//     }
-// }
