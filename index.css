@@ -184,25 +184,27 @@ select {
 }
 
 /* media query */
-@media (min-width:300px) and (max-width: 600px) {
+@media only screen and (min-width:300px) and (max-width: 600px) {
     .container {
         width: 80%;
+        background-color: #182433;
     }
 
     .left {
         width: 100%;
         height: auto;
+        background-color: #213743;
     }
 
     label {
         display: inline-block;
-        width: 8rem;
+        /* width: 9rem; */
     }
 
     input,
     select {
         margin-left: -0.5rem;
-        width: 55%;
+        width: 50%;
     }
 
     #mobile {
@@ -235,15 +237,16 @@ select {
     }
 
     .right {
+        height: auto;
         width: 100%;
         background-color: #182433 !important;
-        margin-bottom: 2rem;
-        padding-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.3rem;
     }
 
     #message {
         font-size: 1.5rem;
-        margin-top: 30rem;
+        margin-top: 20rem;
     }
 
 
