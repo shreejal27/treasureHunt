@@ -1,6 +1,11 @@
 var gameBoard = document.getElementById("game-board");
 var selectElement = document.getElementById("difficulty");
 
+// Function to check if the viewport is in a mobile width range
+function isMobileView() {
+    return window.innerWidth <= 500; // Change the threshold width as needed
+}
+
 // Check if the wallet amount is saved in local storage
 if (localStorage.getItem("walletAmount")) {
     var walletAmount = parseInt(localStorage.getItem("walletAmount"));
@@ -72,6 +77,11 @@ function gameDifficulty(difficultyLevel) {
                 row.appendChild(col);
             }
             gameBoard.appendChild(row);
+        }
+        // Check if it's a mobile view and perform scrolling to the bottom
+        if (isMobileView()) {
+            // console.log("this is from mobile");
+            window.scrollTo(0, document.body.scrollHeight);
         }
         checkActiveRow("row9");
     }
