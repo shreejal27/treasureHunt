@@ -80,13 +80,12 @@ function gameDifficulty(difficultyLevel) {
         }
         // Check if it's a mobile view and perform scrolling to the bottom
         if (isMobileView()) {
-            console.log("this is from mobile easy mode");
+            // console.log("this is from mobile easy mode"); 
             var height = document.body.scrollHeight;
             window.scrollTo({
                 top: height,
-                behavior: 'smooth' // Optionally, for smooth scrolling
+                behavior: 'smooth'
             });
-            console.log(height);
         }
         checkActiveRow("row9");
     }
@@ -120,6 +119,14 @@ function gameDifficulty(difficultyLevel) {
             }
             gameBoard.appendChild(row);
         }
+             // Check if it's a mobile view and perform scrolling to the bottom
+             if (isMobileView()) {
+                var height = document.body.scrollHeight;
+                window.scrollTo({
+                    top: height,
+                    behavior: 'smooth'
+                });
+            }
         checkActiveRow("row9");
     }
     if (difficultyLevel == "hard") {
@@ -153,6 +160,14 @@ function gameDifficulty(difficultyLevel) {
             gameBoard.appendChild(row);
         }
     }
+         // Check if it's a mobile view and perform scrolling to the bottom
+         if (isMobileView()) {
+            var height = document.body.scrollHeight;
+            window.scrollTo({
+                top: height,
+                behavior: 'smooth'
+            });
+        }
     checkActiveRow("row9");
 }
 function clearGameBoard() {
