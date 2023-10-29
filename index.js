@@ -80,8 +80,13 @@ function gameDifficulty(difficultyLevel) {
         }
         // Check if it's a mobile view and perform scrolling to the bottom
         if (isMobileView()) {
-            // console.log("this is from mobile");
-            window.scrollTo(0, document.body.scrollHeight);
+            console.log("this is from mobile easy mode");
+            var height = document.body.scrollHeight;
+            window.scrollTo({
+                top: height,
+                behavior: 'smooth' // Optionally, for smooth scrolling
+            });
+            console.log(height);
         }
         checkActiveRow("row9");
     }
