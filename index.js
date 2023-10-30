@@ -320,14 +320,14 @@ function gameOver() {
 
 
 function cashout() {
-    var cashoutAudio = new Audio('audio/cashout.mp3');
-    cashoutAudio.play();
-
     var walletAmountElement = document.getElementById("amount");
     var profit = parseInt(document.getElementById("profit").value);
     var amount = parseInt(walletAmountElement.innerText);
 
     if (profit > 0) {
+        var cashoutAudio = new Audio('audio/cashout.mp3');
+        cashoutAudio.play();
+
         var increment = Math.ceil(profit / 100); // Change the increment as needed
         var currentBalance = amount;
         var finalBalance = amount + profit;
@@ -354,7 +354,12 @@ function cashout() {
             }
         }, interval);
     } else {
-        alert("You can't cashout at 0 profit!");
+        var errorAudio = new Audio('audio/error.mp3');
+        errorAudio.play();
+        setTimeout(() => {
+            alert("You can't cashout at 0 profit!");
+        }, 100);
+
     }
 }
 
@@ -387,12 +392,20 @@ function multiplier(multiplierWithRow, difficulty) {
 
 function halfBet() {
     var betAmount = parseInt(document.getElementById("betAmount").value);
-    document.getElementById("betAmount").value = parseInt(betAmount / 2);
+    if (betAmount > 0) {
+        var coinAudio = new Audio('audio/coin.mp3');
+        coinAudio.play();
+        document.getElementById("betAmount").value = parseInt(betAmount / 2);
+    }
 }
 
 function doubleBet() {
     var betAmount = parseInt(document.getElementById("betAmount").value);
-    document.getElementById("betAmount").value = betAmount * 2;
+    if (betAmount > 0) {
+        var coinAudio = new Audio('audio/coin.mp3');
+        coinAudio.play();
+        document.getElementById("betAmount").value = betAmount * 2;
+    }
 }
 
 function save() {
@@ -401,7 +414,11 @@ function save() {
 
     var walletAmount = document.getElementById("amount").innerText;
     localStorage.setItem("walletAmount", walletAmount);
-    alert("Wallet Amount Is Saved");
+
+    setTimeout(() => {
+        alert("Wallet Amount Is Saved");
+    }, 100);
+
     if (walletAmount < 100) {
         alert("We have gifted you $100");
     }
