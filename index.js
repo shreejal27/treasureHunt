@@ -119,14 +119,14 @@ function gameDifficulty(difficultyLevel) {
             }
             gameBoard.appendChild(row);
         }
-             // Check if it's a mobile view and perform scrolling to the bottom
-             if (isMobileView()) {
-                var height = document.body.scrollHeight;
-                window.scrollTo({
-                    top: height,
-                    behavior: 'smooth'
-                });
-            }
+        // Check if it's a mobile view and perform scrolling to the bottom
+        if (isMobileView()) {
+            var height = document.body.scrollHeight;
+            window.scrollTo({
+                top: height,
+                behavior: 'smooth'
+            });
+        }
         checkActiveRow("row9");
     }
     if (difficultyLevel == "hard") {
@@ -160,14 +160,14 @@ function gameDifficulty(difficultyLevel) {
             gameBoard.appendChild(row);
         }
     }
-         // Check if it's a mobile view and perform scrolling to the bottom
-         if (isMobileView()) {
-            var height = document.body.scrollHeight;
-            window.scrollTo({
-                top: height,
-                behavior: 'smooth'
-            });
-        }
+    // Check if it's a mobile view and perform scrolling to the bottom
+    if (isMobileView()) {
+        var height = document.body.scrollHeight;
+        window.scrollTo({
+            top: height,
+            behavior: 'smooth'
+        });
+    }
     checkActiveRow("row9");
 }
 function clearGameBoard() {
@@ -221,6 +221,9 @@ function handleColumnClick() {
             // Reveal the image by changing its opacity
             colImage.style.opacity = 1;
 
+            var eggClickAudio = new Audio('audio/eggClick.mp3');
+            eggClickAudio.play();
+
             // Disable the betAmount input after a column is clicked
             document.getElementById("betAmount").disabled = true;
             document.getElementById("difficulty").disabled = true;
@@ -251,6 +254,8 @@ function handleColumnClick() {
         }
         else {
             colImage.style.opacity = 1;
+            var gameOverAudio = new Audio('audio/gameover.mp3');
+            gameOverAudio.play();
             // Delay the execution of the gameOver function for 3 seconds (3000 milliseconds)
             setTimeout(gameOver, 500);
         }
@@ -315,6 +320,9 @@ function gameOver() {
 
 
 function cashout() {
+    var cashoutAudio = new Audio('audio/cashout.mp3');
+    cashoutAudio.play();
+
     // Enable the betAmount input
     var amount = parseInt(document.getElementById("amount").innerText);
     var profit = parseInt(document.getElementById("profit").value);
@@ -378,12 +386,17 @@ function doubleBet() {
 }
 
 function save() {
+    var saveAudio = new Audio('audio/save.mp3');
+    saveAudio.play();
+
     var walletAmount = document.getElementById("amount").innerText;
     localStorage.setItem("walletAmount", walletAmount);
     alert("Wallet Amount Is Saved");
     if (walletAmount < 100) {
         alert("We have gifted you $100");
     }
-    location.reload();
+    setTimeout(() => {
+        location.reload();
+    }, 2000);
 };
 
