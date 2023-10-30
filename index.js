@@ -323,28 +323,38 @@ function cashout() {
     var cashoutAudio = new Audio('audio/cashout.mp3');
     cashoutAudio.play();
 
-    // Enable the betAmount input
-    var amount = parseInt(document.getElementById("amount").innerText);
+    var walletAmountElement = document.getElementById("amount");
     var profit = parseInt(document.getElementById("profit").value);
+    var amount = parseInt(walletAmountElement.innerText);
 
     if (profit > 0) {
+        var increment = Math.ceil(profit / 100); // Change the increment as needed
+        var currentBalance = amount;
+        var finalBalance = amount + profit;
+        var interval = 15; // The interval duration between increments in milliseconds
+
         document.getElementById("betAmount").disabled = false;
         document.getElementById("difficulty").disabled = false;
         document.getElementById("half").onclick = halfBet;
         document.getElementById("double").onclick = doubleBet;
         document.getElementById("half").style.cursor = "pointer";
         document.getElementById("double").style.cursor = "pointer";
-        amount = amount + profit;
-        document.getElementById("amount").innerText = amount;
-        document.getElementById("profit").value = 0;
-        document.getElementById("multiplier").innerText = 0;
-        //to reset the game
-        var selectedOption = selectElement.options[selectElement.selectedIndex];
-        var selectedValue = selectedOption.value;
-        gameDifficulty(selectedValue);
-    }
-    else {
-        alert("You can't cashout at 0 profit !");
+
+        var updateWallet = setInterval(function () {
+            currentBalance += increment;
+            walletAmountElement.innerText = currentBalance;
+
+            if (currentBalance >= finalBalance) {
+                clearInterval(updateWallet);
+                document.getElementById("profit").value = 0;
+                document.getElementById("multiplier").innerText = 0;
+                var selectedOption = selectElement.options[selectElement.selectedIndex];
+                var selectedValue = selectedOption.value;
+                gameDifficulty(selectedValue);
+            }
+        }, interval);
+    } else {
+        alert("You can't cashout at 0 profit!");
     }
 }
 
