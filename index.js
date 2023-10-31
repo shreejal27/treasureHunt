@@ -29,7 +29,9 @@ selectElement.addEventListener("change", function () {
         // Select the '-' option
         document.getElementById("difficulty").value = "-";
         gameDifficulty("-");
-    } else {
+    }
+
+    else {
         // Enable the betAmount input when a difficulty level is selected
         document.getElementById("betAmount").disabled = false;
         document.getElementById("difficulty").disabled = false;
@@ -209,6 +211,10 @@ function handleColumnClick() {
         if (betAmount > amount || betAmount < 1) {
             alert("Change Bet Amount Or Load Your Wallet");
             return; // Prevent further execution of the function
+        }
+        if (betAmount > 10000) {
+            alert("Max Bet Amount is 10000");
+            return; 
         }
         var clickedColId = this.id;
         // var colNumber = clickedColId.substr(3, 1);
