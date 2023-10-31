@@ -20,25 +20,28 @@ selectElement.addEventListener("change", function () {
     var selectedOption = selectElement.options[selectElement.selectedIndex];
     var selectedValue = selectedOption.value;
 
-    var amount = parseInt(document.getElementById("amount").innerText);
-    var betAmount = parseInt(document.getElementById("betAmount").value);
+    // var amount = parseInt(document.getElementById("amount").innerText);
+    // var betAmount = parseInt(document.getElementById("betAmount").value);
 
-    if (betAmount > amount || betAmount < 1) {
-        alert("Please change your Bet Amount");
-        // go to index page
-        // Select the '-' option
-        document.getElementById("difficulty").value = "-";
-        gameDifficulty("-");
-    }
+    // if (betAmount > amount || betAmount < 1) {
+    //     var errorAudio = new Audio('audio/error.mp3');
+    //     errorAudio.play();
+    //     setTimeout(() => {
+    //         alert("Please change your Bet Amount");
+    //         document.getElementById("difficulty").value = "-";
+    //         gameDifficulty("-");
+    //     }, 100);
 
-    else {
-        // Enable the betAmount input when a difficulty level is selected
-        document.getElementById("betAmount").disabled = false;
-        document.getElementById("difficulty").disabled = false;
-        document.getElementById("half").onclick = halfBet;
-        document.getElementById("double").onclick = doubleBet;
-        gameDifficulty(selectedValue);
-    }
+    // }
+
+    // else {
+    // Enable the betAmount input when a difficulty level is selected
+    document.getElementById("betAmount").disabled = false;
+    document.getElementById("difficulty").disabled = false;
+    document.getElementById("half").onclick = halfBet;
+    document.getElementById("double").onclick = doubleBet;
+    gameDifficulty(selectedValue);
+    // }
 });
 
 function gameDifficulty(difficultyLevel) {
@@ -209,12 +212,20 @@ function handleColumnClick() {
         var amount = parseInt(document.getElementById("amount").innerText);
 
         if (betAmount > amount || betAmount < 1) {
-            alert("Change Bet Amount Or Load Your Wallet");
+            var errorAudio = new Audio('audio/error.mp3');
+            errorAudio.play();
+            setTimeout(() => {
+                alert("Change Bet Amount Or Load Your Wallet");
+            }, 100);
             return; // Prevent further execution of the function
         }
         if (betAmount > 10000) {
-            alert("Max Bet Amount is 10000");
-            return; 
+            var errorAudio = new Audio('audio/error.mp3');
+            errorAudio.play();
+            setTimeout(() => {
+                alert("Max Bet Amount is 10000");
+            }, 100);
+            return;
         }
         var clickedColId = this.id;
         // var colNumber = clickedColId.substr(3, 1);
