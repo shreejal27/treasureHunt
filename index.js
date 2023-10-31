@@ -254,7 +254,7 @@ function handleColumnClick() {
         }
         else {
             colImage.style.opacity = 1;
-            var gameOverAudio = new Audio('audio/gameover.mp3');
+            var gameOverAudio = new Audio('audio/gameOver.mp3');
             gameOverAudio.play();
             // Delay the execution of the gameOver function for 3 seconds (3000 milliseconds)
             setTimeout(gameOver, 500);
